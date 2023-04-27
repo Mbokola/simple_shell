@@ -24,9 +24,9 @@ int main(void)
 			break;
 		}
 		input[length - 1] = '\0';
-		tmp = malloc(sizeof(char *) * strlen(input) + 1);
+		tmp = malloc(sizeof(char *) * _strlen(input) + 1);
 		tmp[1] = NULL;
-		tmp[0] = strdup(input);
+		tmp[0] = _strdup(input);
 		child = fork();
 		if (child == 0)
 		{
@@ -41,4 +41,41 @@ int main(void)
 	}
 	free(input);
 	return (0);
+}
+
+/**
+ * _strlen - determines the length of a string
+ * @s: string to be measured
+ *
+ * Return: length of string
+ */
+size_t _strlen(const char *s)
+{
+	size_t i = 0;
+
+	while (s[i])
+		i++;
+	return (i);
+}
+
+/**
+ * _strdup - creates a duplicate
+ * @str: string to duplicated
+ *
+ * Return: duplicated string
+ */
+char *_strdup(const char *str)
+{
+	size_t len = _strlen(str) + 1;
+	char *duplicate = malloc(len);
+	int i = 0;
+
+	if (duplicate != NULL)
+	{
+		for (i = 0; str[i]; i++)
+			duplicate[i] = str[i];
+		duplicate[i] = '\0';
+
+	}
+	return (duplicate);
 }

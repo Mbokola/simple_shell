@@ -6,4 +6,7 @@ extern char **environ;
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
+
+size_t _strlen(const char *s);
+char *_strdup(const char *str);
 #endif
