@@ -12,18 +12,22 @@ int main(int ac, char **argv, char **env)
 {
 	char *buffer = NULL;
 	size_t line_len = 0;
-	ssize_t length;
-	int status;
+	ssize_t length = 0;
+	int status, loop = 1;
 
-	(void) argv;
 	if (ac == 1)
 	{
-		while (1)
+		while (loop)
 		{
+			if (!(isatty(STDIN_FILENO)))
+				loop = 0;
 			write(STDOUT_FILENO, "($) ", 4);
 			length = getline(&buffer, &line_len, stdin);
 			if (length == -1)
+			{
+				write(STDOUT_FILENO, "\n", 2);
 				break;
+			}
 			if (_strcmp(buffer, "exit\n", 1) == 0)
 				break;
 			if (_strcmp(buffer, "env\n", 1) == 0)
@@ -36,7 +40,6 @@ int main(int ac, char **argv, char **env)
 					status = main_break(&buffer, env, argv);
 					if (status == -1)
 					{
-						perror("Error allocating memory\n");
 						break;
 					}
 				}
