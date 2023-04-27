@@ -24,7 +24,6 @@ int main(int ac, char **argv, char **env)
 			length = getline(&buffer, &line_len, stdin);
 			if (length == -1)
 			{
-				write(STDOUT_FILENO, "\n", 2);
 				break;
 			}
 			if (_strcmp(buffer, "exit\n", 1) == 0)
