@@ -44,7 +44,6 @@ char *path_break(char *string, char *com)
 	}
 	if (!string)
 	{
-		free(ptr);
 		return (NULL);
 	}
 	return (ptr);

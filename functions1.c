@@ -60,10 +60,10 @@ void print_env(char **env)
  * main_break - tackles some of main tasks
  * @buffer: users input
  * @env: environment
- *
+ * @argv: Arguments received
  * Return: 0 if successful else -1
  */
-int main_break(char **buffer, char **env)
+int main_break(char **buffer, char **env, char **argv)
 {
 	int i, status;
 	char **tmp, *test, *ptr, *get_command;
@@ -87,10 +87,14 @@ int main_break(char **buffer, char **env)
 			execute(tmp, env);
 		else
 			wait(&status);
+		set_free(&tmp);
+
 	}
 	else
-		perror("File not found");
-	set_free(&tmp);
+	{
+		write(STDOUT_FILENO, argv[0], _strlen(argv[0]));
+		perror(" ");
+	}
 	free(tmp);
 	return (0);
 }

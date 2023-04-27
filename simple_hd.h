@@ -8,7 +8,6 @@
 #include <string.h>
 #include <sys/stat.h>
 
-extern char **environ;
 
 int _strcmp(char *string, char *compare, int code);
 int arguments(char *buffer);
@@ -19,7 +18,7 @@ char *command(char *str);
 char *get_env(char **env, char *str);
 char *get_path(char *path, char *cmd);
 char *_strcpy(char *dest, char *origin);
-int main_break(char **buffer, char **env);
+int main_break(char **buffer, char **env, char **argv);
 char *append(char **ptr, const char *rec);
 void print_env(char **env);
 char *path_break(char *string, char *com);

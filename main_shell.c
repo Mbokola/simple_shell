@@ -33,7 +33,7 @@ int main(int ac, char **argv, char **env)
 				buffer[length - 1] = '\0';
 				if (length != 1)
 				{
-					status = main_break(&buffer, env);
+					status = main_break(&buffer, env, argv);
 					if (status == -1)
 					{
 						perror("Error allocating memory\n");

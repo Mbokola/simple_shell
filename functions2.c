@@ -119,6 +119,7 @@ char *get_path(char *path, char *cmd)
 	store = path_break(store, cmd);
 	if (!store)
 	{
+
 		free(save_link);
 		free(cmd);
 		return (NULL);
