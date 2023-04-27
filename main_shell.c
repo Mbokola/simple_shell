@@ -19,9 +19,7 @@ int main(int ac, char **argv, char **env)
 	{
 		while (loop)
 		{
-			if (!(isatty(STDIN_FILENO)))
-				loop = 0;
-			if (loop)
+			if (isatty(STDIN_FILENO))
 				write(STDOUT_FILENO, "($) ", 4);
 			length = getline(&buffer, &line_len, stdin);
 			if (length == -1)

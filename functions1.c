@@ -98,7 +98,8 @@ int main_break(char **buffer, char **env, char **argv)
 		write(STDOUT_FILENO, argv[0], _strlen(argv[0]));
 		perror(" ");
 	}
-	free(tmp);
+	if(tmp)
+		free(tmp);
 	return (0);
 }
 /**
