@@ -21,7 +21,8 @@ int main(int ac, char **argv, char **env)
 		{
 			if (!(isatty(STDIN_FILENO)))
 				loop = 0;
-			write(STDOUT_FILENO, "($) ", 4);
+			if (loop)
+				write(STDOUT_FILENO, "($) ", 4);
 			length = getline(&buffer, &line_len, stdin);
 			if (length == -1)
 			{
@@ -39,9 +40,7 @@ int main(int ac, char **argv, char **env)
 				{
 					status = main_break(&buffer, env, argv);
 					if (status == -1)
-					{
 						break;
-					}
 				}
 				else
 					continue;
