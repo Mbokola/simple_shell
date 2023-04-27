@@ -88,8 +88,11 @@ int arguments(char *buffer)
 
 	while (buffer[count])
 	{
-		if (buffer[count] == ' ' && buffer[count + 1] != ' ')
-			i++;
+		if (buffer[count] != ' ')
+		{
+			if (buffer[count] + 1 == ' ')
+				i++;
+		}
 		count++;
 	}
 	return (i);
