@@ -99,7 +99,7 @@ int main_break(char **buffer, char **env, char **argv)
 	}
 	else
 	{
-		write(STDOUT_FILENO, argv[0], _strlen(argv[0]));
+		write(STDERR_FILENO, argv[0], _strlen(argv[0]));
 		perror(" ");
 	}
 	if (tmp)
