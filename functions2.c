@@ -29,15 +29,14 @@ char *_strcpy(char *dest, char *origin)
 char *command(char *str)
 {
 	size_t len, i = 0;
-	char *extract, *ptr;
+	char *extract;
 
-	ptr = str;
-	len = (_strlen(ptr)) - 1;
-	if (ptr[0] != '/')
+	len = (_strlen(str)) - 1;
+	if (str[0] != '/')
 	{
-		return (ptr);
+		return (str);
 	}
-	while (ptr[len] != '/')
+	while (str[len] != '/')
 	{
 		i++;
 		len--;
@@ -49,9 +48,9 @@ char *command(char *str)
 	}
 	len += 1;
 	i = 0;
-	while (ptr[len])
+	while (str[len])
 	{
-		extract[i] = ptr[len];
+		extract[i] = str[len];
 		i++;
 		len++;
 	}
