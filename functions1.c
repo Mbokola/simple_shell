@@ -70,6 +70,8 @@ int main_break(char **buffer, char **env, char **argv)
 	pid_t child;
 
 	i = arguments(*buffer);
+	if (i == 1)
+		return (0);
 	tmp = malloc(sizeof(char *) * i);
 	if (!tmp)
 		return (-1);
@@ -98,7 +100,7 @@ int main_break(char **buffer, char **env, char **argv)
 		write(STDOUT_FILENO, argv[0], _strlen(argv[0]));
 		perror(" ");
 	}
-	if(tmp)
+	if (tmp)
 		free(tmp);
 	return (0);
 }
