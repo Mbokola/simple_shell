@@ -66,7 +66,7 @@ void print_env(char **env)
 int main_break(char **buffer, char **env, char **argv)
 {
 	int i, status;
-	char **tmp, *test, *ptr = NULL, *get_command, *tmp1 = *buffer;
+	char **tmp, *test, *ptr = NULL, *tmp1 = *buffer;
 	pid_t child;
 
 	i = arguments(*buffer);
@@ -77,12 +77,11 @@ int main_break(char **buffer, char **env, char **argv)
 		return (-1);
 	tmp[i - 1] = NULL;
 	tokens(&buffer, &tmp, " ");
-	get_command = command(tmp[0]);
 	if (tmp1[0] != '.')
 		ptr = get_env(env, "PATH");
 	else
 		ptr = get_env(env, "PWD");
-	test = get_path(ptr, get_command);
+	test = get_path(ptr, tmp[0]);
 	if (test)
 	{
 		tmp[0] = _strdup(test);

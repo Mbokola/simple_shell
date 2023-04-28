@@ -21,44 +21,6 @@ char *_strcpy(char *dest, char *origin)
 	return (dest);
 }
 /**
- * command - extracts the command from the name of path folder
- * @str: string to extract from
- *
- * Return: extracted string command
- */
-char *command(char *str)
-{
-	size_t len, i = 0;
-	char *extract;
-
-	len = (_strlen(str)) - 1;
-	if (str[0] != '/')
-	{
-		return (str);
-	}
-	while (str[len] != '/')
-	{
-		i++;
-		len--;
-	}
-	extract = malloc(sizeof(char) * i + 1);
-	if (!extract)
-	{
-		return (NULL);
-	}
-	len += 1;
-	i = 0;
-	while (str[len])
-	{
-		extract[i] = str[len];
-		i++;
-		len++;
-	}
-	extract[i] = '\0';
-	free(str);
-	return (extract);
-}
-/**
  * _strlen - determines the length of a string
  * @s: string to be measured
  *
@@ -110,25 +72,24 @@ char *get_env(char **env, char *str)
 char *get_path(char *path, char *cmd)
 {
 	char *store, *save_link;
+	struct stat st;
 
+	if (cmd[0] == '/')
+	{
+		if (stat(cmd, &st) == 0)
+		{
+			return (cmd);
+		}
+		else
+		{
+			free(cmd);
+			return (NULL);
+		}
+	}
 	store = _strdup(path);
 	save_link = store;
 	store = strtok(store, "=");
-	if (!store)
-	{
-
-		free(save_link);
-		free(cmd);
-		return (NULL);
-	}
 	store = strtok(NULL, ":");
-	if (!store)
-	{
-
-		free(save_link);
-		free(cmd);
-		return (NULL);
-	}
 	store = path_break(store, cmd);
 	if (!store)
 	{
