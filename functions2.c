@@ -114,7 +114,21 @@ char *get_path(char *path, char *cmd)
 	store = _strdup(path);
 	save_link = store;
 	store = strtok(store, "=");
+	if (!store)
+	{
+
+		free(save_link);
+		free(cmd);
+		return (NULL);
+	}
 	store = strtok(NULL, ":");
+	if (!store)
+	{
+
+		free(save_link);
+		free(cmd);
+		return (NULL);
+	}
 	store = path_break(store, cmd);
 	if (!store)
 	{
