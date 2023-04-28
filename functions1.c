@@ -69,12 +69,12 @@ int main_break(char **buffer, char **env, char **argv)
 	char **tmp, *test, *ptr, *get_command;
 	pid_t child;
 
-	i = arguments(*buffer) + 1;
+	i = arguments(*buffer);
 	tmp = malloc(sizeof(char *) * i);
 	if (!tmp)
 		return (-1);
 	tmp[i - 1] = NULL;
-	tmp = tokens(&buffer, &tmp, " ");
+	tokens(&buffer, &tmp, " ");
 	get_command = command(tmp[0]);
 	ptr = get_env(env, "PATH");
 	test = get_path(ptr, get_command);
@@ -85,7 +85,7 @@ int main_break(char **buffer, char **env, char **argv)
 		child = fork();
 		if (child == 0)
 		{
-			execute(tmp, env);
+			execute(&tmp, env);
 			exit(EXIT_SUCCESS);
 		}
 		else

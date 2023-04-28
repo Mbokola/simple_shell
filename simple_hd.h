@@ -11,8 +11,8 @@
 
 int _strcmp(char *string, char *compare, int code);
 int arguments(char *buffer);
-char **tokens(char ***buffer, char ***tmp, char *d);
-void execute(char **tmp, char **env);
+void tokens(char ***buffer, char ***tmp, char *d);
+void execute(char ***tmp, char **env);
 size_t _strlen(const char *s);
 char *command(char *str);
 char *get_env(char **env, char *str);

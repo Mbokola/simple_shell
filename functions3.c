@@ -90,7 +90,7 @@ int arguments(char *buffer)
 	{
 		if (buffer[count] != ' ')
 		{
-			if (buffer[count] + 1 == ' ')
+			if (buffer[count + 1] == ' ' || buffer[count + 1] == '\0')
 				i++;
 		}
 		count++;
@@ -105,7 +105,7 @@ int arguments(char *buffer)
  *
  * Return: tokenized string
  */
-char **tokens(char ***buffer, char ***tmp, char *d)
+void tokens(char ***buffer, char ***tmp, char *d)
 {
 	char *str;
 	int count = 0;
@@ -117,7 +117,6 @@ char **tokens(char ***buffer, char ***tmp, char *d)
 		str = strtok(NULL, d);
 		count++;
 	}
-	return (*tmp);
 }
 /**
  * execute - used to execute the commands
@@ -126,9 +125,9 @@ char **tokens(char ***buffer, char ***tmp, char *d)
  *
  * Return: void
  */
-void execute(char **tmp, char **env)
+void execute(char ***tmp, char **env)
 {
-	if (execve(tmp[0], tmp, env) == -1)
+	if (execve(*tmp[0], *tmp, env) == -1)
 	{
 		perror("Failed to execute\n");
 		exit(98);
