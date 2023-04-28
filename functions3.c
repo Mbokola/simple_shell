@@ -107,7 +107,7 @@ int arguments(char *buffer)
  */
 void tokens(char ***buffer, char ***tmp, char *d)
 {
-	char *str;
+	char *str = NULL;
 	int count = 0;
 
 	str = strtok(**buffer, d);
