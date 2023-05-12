@@ -100,7 +100,6 @@ int main_break(char **buffer, char **env, char **argv)
 	{
 		write(STDERR_FILENO, argv[0], _strlen(argv[0]));
 		perror(" ");
-		return (2);
 	}
 	if (tmp)
 		free(tmp);
