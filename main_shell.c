@@ -27,7 +27,7 @@ int main(int ac, char **argv, char **env)
 				break;
 			}
 			if (_strcmp(buffer, "exit\n", 1) == 0)
-				exit(errno);
+				exit(0);
 			if (_strcmp(buffer, "env\n", 1) == 0)
 				print_env(env);
 			else
