@@ -7,6 +7,7 @@
 #include <sys/wait.h>
 #include <string.h>
 #include <sys/stat.h>
+#include <errno.h>
 
 
 int _strcmp(char *string, char *compare, int code);
